@@ -37,5 +37,5 @@ if (version_string == "R version 3.6.3 (2020-02-29)") {
 source('mssql-helper.R')
 
 con <- connect_mssql()
-tbl_list <- db_list_tables(con)
+tbl_list <- dbListTables(con)
 tbl_result <- tbl(con, tbl_list[5])
