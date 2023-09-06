@@ -3,7 +3,7 @@ source('config.R')
 
 version_string <- R.version$version.string
 
-if (version_string == "R version 3.6.3 (2020-02-29)"){
+if (version_string == "R version 3.6.3 (2020-02-29)") {
   
   options(repos = c(CRAN = 'https://cran.rstudio.com'))
   
@@ -23,11 +23,19 @@ if (version_string == "R version 3.6.3 (2020-02-29)"){
   
   source('mssql-helper.R')
   
-  con <- connect_mssql()
-  db_list_tables(con)
-  tbl(con, db_list_tables(con)[5])
-  
   
 } else {
-  cat("You are not running R version 3.6.3.\n")
+  library(XML)
+  library(dplyr) 
+  library(dbplyr)
+  library(odbc)
+  library(DBI)
+  library(rlist)
+  
 }
+
+source('mssql-helper.R')
+
+con <- connect_mssql()
+tbl_list <- db_list_tables(con)
+tbl_result <- tbl(con, tbl_list[5])
